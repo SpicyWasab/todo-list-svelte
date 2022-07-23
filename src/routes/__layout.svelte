@@ -11,7 +11,7 @@
 
     import { goto } from "$app/navigation";
 
-    import { todoLists, databaseStarted } from '$lib/state';
+    import { todoLists, databaseStarted } from '$lib/state.mjs';
     
     import { init } from '$lib/database.mjs';
     

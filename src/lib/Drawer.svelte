@@ -12,15 +12,15 @@
     }
 </script>
 
-<script lang="ts">
+<script>
     import Drawer, { Content, Scrim, Header, Title, Subtitle } from '@smui/drawer';
     import List, { Item, Text, Separator, Graphic } from '@smui/list';
     
     import { navigating } from '$app/stores'; 
     import { goto } from '$app/navigation';
-    import { databaseStarted } from './state';
+    import { databaseStarted } from './state.mjs';
 
-    let currentActivity: string;
+    let currentActivity = undefined;
     let disabled = false;
 
     $: if($navigating?.to != undefined) {

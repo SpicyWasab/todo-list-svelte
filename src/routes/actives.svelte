@@ -1,14 +1,14 @@
-<script lang="ts">
+<script>
     import Card, { PrimaryAction, Content } from '@smui/card';
     import LayoutGrid, { Cell } from '@smui/layout-grid';
     
     import Fab, { Icon } from '@smui/fab';
 
-    import { currentList, todoLists } from '$lib/state';
+    import { currentList, todoLists } from '$lib/state.mjs';
 
     import { fade } from 'svelte/transition';
 
-    function openList(list: object) {
+    function openList(list) {
         // changeActivity('default:list');
         currentList.set(list);
     }
