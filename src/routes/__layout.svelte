@@ -2,6 +2,7 @@
     import TopAppBar from '$lib/TopAppBar.svelte';
     import Drawer from '$lib/Drawer.svelte';
     import SnackBarManager from '$lib/SnackBarManager.svelte';
+    import DialogManager from '$lib/DialogManager.svelte';
 
     import CircularProgress from "@smui/circular-progress";
     
@@ -33,10 +34,11 @@
   </div>
 
 {:then}
-
-<slot>
-    <!-- App main-->
-</slot>
+<main>
+  <slot>
+      <!-- App main-->
+  </slot>
+</main>
 
 {:catch error}
 
@@ -53,3 +55,4 @@
 {/await}
 
 <SnackBarManager />
+<DialogManager />

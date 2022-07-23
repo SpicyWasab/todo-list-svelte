@@ -84,8 +84,8 @@ export async function createList(name) {
         }
 
         request.onsuccess = async () => {
-            await updateTodosState();
-            resolve();
+            let todos = await fetchTodos();
+            resolve(todos);
         }
    });
 }

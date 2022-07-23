@@ -5,6 +5,7 @@
     import Fab, { Icon } from '@smui/fab';
 
     import { currentList, todoLists } from '$lib/state.mjs';
+    import { showDialog } from '$lib/DialogManager.svelte'
 
     import { fade } from 'svelte/transition';
 
@@ -16,20 +17,12 @@
 
 {#if $todoLists.length === 0}
 
-    <div class="container">
+    <div class="center-items">
         <p>
             Il n'y a aucune liste pour le moment. <br>
             Essayez d'en créer une !
         </p>
     </div>
-
-    <style>
-        .container {
-            height: 100%;
-            display: grid;
-            place-items: center;
-        }
-    </style>
 
 {:else}
 <!---->
@@ -58,7 +51,7 @@
 {/if}
 
 <div in:fade={{ delay: 400, duration: 150 }} class="float" >
-    <Fab color="secondary" touch on:click={() => { }}>
+    <Fab color="secondary" touch on:click={() => showDialog('create-list')}>
         <Icon class="material-icons">add</Icon>
     </Fab>
 </div>
