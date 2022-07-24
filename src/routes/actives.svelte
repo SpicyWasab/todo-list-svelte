@@ -13,11 +13,14 @@
 
 {#if Object.values($todoLists).length === 0}
 
-    <div class="center-items">
-        <p>
-            Il n'y a aucune liste pour le moment. <br>
-            Essayez d'en créer une !
-        </p>
+    <div class="center-items" transition:fade={{ duration: 200 }}>
+        <div>
+            <div class="icon material-icons">playlist_add_check</div>
+            <p>
+                Il n'y a aucune liste pour le moment. <br>
+                Essayez d'en créer une !
+            </p>
+        </div>
     </div>
 
 {:else}

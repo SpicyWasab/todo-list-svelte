@@ -68,10 +68,3 @@
         <Icon class="material-icons">add_task</Icon>
     </Fab>
 </div>
-
-<style>
-    .done-task-text {
-        text-decoration: line-through;
-        opacity: .5;
-    }
-</style>

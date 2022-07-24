@@ -3,9 +3,10 @@
     import IconButton from '@smui/icon-button';
     import Menu from '@smui/menu';
     import List, { Item, Separator, Text } from '@smui/list';
-    
+    import Checkbox from '@smui/checkbox';
+
     import { showDialog } from '$lib/DialogManager.svelte'
-import { goto } from '$app/navigation';
+    import { goto } from '$app/navigation';
 
     export let list;
 
@@ -14,6 +15,7 @@ import { goto } from '$app/navigation';
 
 <Card variant="outlined" class="card">
     <Actions>
+        <h3>{list.name}</h3>
         <ActionIcons>
             <IconButton class="material-icons" on:click={() => menu.setOpen(true)}>
                 more_vert
@@ -38,24 +40,25 @@ import { goto } from '$app/navigation';
         </ActionIcons>
     </Actions>
     <PrimaryAction on:click={() => goto(`/list/${list.name}`)}>
-        <Content>
-            <h3>{list.name}</h3>
-            
-            <ul>
-                {#each list.todos.slice(0, 2) as task}
-                    <li>{task.name}</li>
-                {/each}
-            </ul>
-        </Content>
+        <List checkList ripple>
+            {#each list.todos.slice(0, 3) as { name, done }}
+                <Item disabled ripple={false}>
+                        <Checkbox disabled checked={done}/>
+                        <span class:done>{name}</span>
+                </Item>
+            {:else}
+                <Item disabled ripple={false}>Aucune tâche</Item>
+            {/each}
+        </List>
     </PrimaryAction>
 </Card>
 
 <style>
-    .card {
-        z-index: 0;
-    }
-
-    .menu {
-        z-index: 20 !important;
+    h3 {
+        margin-left: 1rem;
+        text-overflow: ellipsis;
+        width: 80%;
+        overflow-x: hidden;
+        white-space: nowrap;
     }
 </style>
