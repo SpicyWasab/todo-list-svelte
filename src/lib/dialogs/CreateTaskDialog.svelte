@@ -3,7 +3,7 @@
     import Button, { Label } from '@smui/button';
     import TextField, { HelperLine } from '@smui/textfield';
 
-    import { createTask } from '$lib/database.mjs';
+    import { saveList } from '$lib/database.mjs';
     import { currentList } from '$lib/state.mjs';
     import { showSnackbar } from '$lib/SnackBarManager.svelte';
 
@@ -13,10 +13,18 @@
 
     async function submit() {
         try {
-            let newList = await createTask(taskName, $currentList);
-            currentList.set(newList);
+            if($currentList.todos.some(task => task.name === taskName)) return showSnackbar('Une tâche de cette liste porte déjà ce nom.');
+
+            currentList.update(list => {
+                list.todos.push({ name: taskName, done: false });
+                return list;
+            });
+
+            await saveList($currentList);
+
             showSnackbar(`La tâche ${taskName} a été ajoutée !`);
         } catch(e) {
+            console.error(e);
             showSnackbar(`Une erreur est survenue.`);
         }
     }

@@ -27,7 +27,7 @@ function initDatabase() {
 
             let todoStore = db.createObjectStore('actives', { keyPath: 'id', autoIncrement: true });
 
-            todoStore.createIndex('name', 'name', { unique: false });
+            todoStore.createIndex('name', 'name', { unique: true })
             todoStore.createIndex('todos', 'todos', { unique: false });
             todoStore.createIndex('folder', 'folder')
 
@@ -55,7 +55,9 @@ export async function fetchTodos() {
         }
 
         request.onsuccess = e => {
-            const todos = request.result.reverse();
+            const todosEntries = request.result.reverse().map(list => [list.name, list]);
+            const todos = Object.fromEntries(todosEntries);
+
             resolve(todos);
         }
     });
@@ -65,6 +67,7 @@ export async function createList(name) {
     const transaction = db.transaction('actives', 'readwrite');
 
     transaction.onerror = error => {
+        console.error(error);
         throw error;
     }
     
@@ -80,6 +83,7 @@ export async function createList(name) {
 
     return new Promise((resolve, reject) => {
         request.onerror = error => {
+            console.error(error);
             reject(error);
         }
 
@@ -120,34 +124,7 @@ export async function createTask(name, list) {
    });
 }
 
-export async function toggleTaskDone(taskName, list) {
-    const transaction = db.transaction('actives', 'readwrite');
-
-    transaction.onerror = error => {
-        throw error;
-    }
-    
-    const store = transaction.objectStore('actives');
-
-    const task = list.todos.find(task => task.name === taskName);
-
-    task.done = !task.done;
-
-    let request = store.put(list);
-
-    return new Promise((resolve, reject) => {
-        request.onerror = error => {
-            reject(error);
-        }
-
-        request.onsuccess = async () => {
-            await updateTodosState();
-            resolve(list);
-        }
-   });
-}
-
-export async function deleteTask(taskName, list) {
+export async function saveList(list) {
     const transaction = db.transaction('actives', 'readwrite');
 
     transaction.onerror = error => {
@@ -156,10 +133,6 @@ export async function deleteTask(taskName, list) {
     
     const store = transaction.objectStore('actives');
     
-    const taskIndex = list.todos.findIndex(task => task.name === taskName);
-
-    list.todos.splice(taskIndex, 1);
-
     let request = store.put(list);
 
     return new Promise((resolve, reject) => {
@@ -168,7 +141,6 @@ export async function deleteTask(taskName, list) {
         }
 
         request.onsuccess = async () => {
-            await updateTodosState();
             resolve(list);
         }
    });

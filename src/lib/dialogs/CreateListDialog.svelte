@@ -13,6 +13,9 @@
 
     async function submit() {
         try {
+            if($todoLists[listName] != undefined) return showSnackbar('Une autre liste porte déjà ce nom.');
+
+            // TODO: to update with ... update ? xD
             let newTodoListsState = await createList(listName);
             todoLists.set(newTodoListsState);
 

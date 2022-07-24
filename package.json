@@ -17,8 +17,10 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.22.2",
+		"@smui-extra/accordion": "^6.0.0",
 		"@smui/banner": "^6.0.0-beta.16",
 		"@smui/card": "^6.0.0-beta.16",
+		"@smui/checkbox": "^6.0.0",
 		"@smui/circular-progress": "^6.0.0-beta.16",
 		"@smui/dialog": "^6.0.0-beta.16",
 		"@smui/drawer": "^6.0.0-beta.16",
