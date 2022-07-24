@@ -1,10 +1,9 @@
 <script>
-    import Card, { PrimaryAction, Content } from '@smui/card';
+    import ListCard from '$lib/ListCard.svelte';
     import LayoutGrid, { Cell } from '@smui/layout-grid';
     
     import Fab, { Icon } from '@smui/fab';
     
-    import { goto } from '$app/navigation';
     import { todoLists } from '$lib/state.mjs';
     import { showDialog } from '$lib/DialogManager.svelte'
     
@@ -27,19 +26,7 @@
         {#each (Object.values($todoLists)) as list, index (list.id)}
             <Cell span={2}>
                 <div in:fade={{delay: 400 + 100*index}} class="container">
-                    <Card variant="outlined" on:click={() => goto(`/list/${list.name}`)}>
-                        <PrimaryAction>
-                            <Content>
-                                <h3>{list.name}</h3>
-                                
-                                <ul>
-                                    {#each list.todos.slice(0, 2) as task}
-                                        <li>{task.name}</li>
-                                    {/each}
-                                </ul>
-                            </Content>
-                        </PrimaryAction>
-                    </Card>
+                    <ListCard {list} />
                 </div>
             </Cell>
         {/each}

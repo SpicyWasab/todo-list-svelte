@@ -94,6 +94,31 @@ export async function createList(name) {
    });
 }
 
+export async function deleteList(id) {
+    const transaction = db.transaction('actives', 'readwrite');
+
+    transaction.onerror = error => {
+        console.error(error);
+        throw error;
+    }
+    
+    const store = transaction.objectStore('actives');
+
+    let request = store.delete(id);
+
+    return new Promise((resolve, reject) => {
+        request.onerror = error => {
+            console.error(error);
+            reject(error);
+        }
+
+        request.onsuccess = async () => {
+            let todos = await fetchTodos();
+            resolve(todos);
+        }
+   });
+}
+
 export async function createTask(name, list) {
     const transaction = db.transaction('actives', 'readwrite');
 
