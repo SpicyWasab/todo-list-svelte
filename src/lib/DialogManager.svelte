@@ -1,4 +1,6 @@
 <script context="module">
+    import { closeDrawer } from './Drawer.svelte';
+    
     import dialogs from './dialogs';
     import { writable } from 'svelte/store';
     
@@ -12,6 +14,7 @@
         console.log('tetstttttt')
         console.log(props);
         dialogProps.set(props);
+        closeDrawer();
         currentDialog.set(dialog);
     }
 </script>

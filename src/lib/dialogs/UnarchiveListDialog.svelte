@@ -14,15 +14,15 @@
 
     async function submit() {
         try {
-            if (await db.table('archive').get(list.name) != undefined) return showSnackbar('Une liste du même nom se trouve déjà dans l\'archive');
+            if (await db.table('actives').get(list.name) != undefined) return showSnackbar('Une liste du même nom se trouve déjà dans la catégorie Actives');
 
-            await db.table('archive').add(list);
+            await db.table('actives').add(list);
 
             await db
-                .table(category)
+                .table('archive')
                 .delete(list.name);
             
-            showSnackbar(`La liste ${list.name} a été archivée !`);
+            showSnackbar(`La liste ${list.name} a été désarchivée !`);
         } catch(e) {
             console.error(e);
             showSnackbar(`Une erreur est survenue.`);
@@ -31,16 +31,16 @@
 </script>
 
 <Dialog open on:SMUIDialog:closed>
-    <DialogTitle>Archiver</DialogTitle>
+    <DialogTitle>Désarchiver</DialogTitle>
     <Content>
-        <Text>Archiver la liste {list.name} ?</Text>
+        <Text>Désarchiver la liste {list.name} ?</Text>
     </Content>
     <Actions>
         <Button color="secondary" use={[InitialFocus]}>
             <Label>Annuler</Label>
         </Button>
         <Button variant="unelevated" on:click={submit}>
-            <Label>Archiver</Label>
+            <Label>Désarchiver</Label>
         </Button>
     </Actions>
 </Dialog>

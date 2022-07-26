@@ -3,9 +3,11 @@
     import Button, { Label } from '@smui/button';
     import TextField, { HelperLine } from '@smui/textfield';
 
-    import { createList } from '$lib/database.mjs';
     import { showSnackbar } from '$lib/SnackBarManager.svelte';
-    import { todoLists } from '$lib/state.mjs';
+    import { db } from '$lib/db';
+    import { page } from '$app/stores';
+    
+    const { category } = $page.params;
 
     let listName = "";
 
@@ -13,14 +15,13 @@
 
     async function submit() {
         try {
-            if($todoLists[listName] != undefined) return showSnackbar('Une autre liste porte déjà ce nom.');
+            // if($todoLists[listName] != undefined) return showSnackbar('Une autre liste porte déjà ce nom.');
 
-            // TODO: to update with ... update ? xD
-            let newTodoListsState = await createList(listName);
-            todoLists.set(newTodoListsState);
+            await db.table(category).add({ name: listName, tasks: [ ] })
 
             showSnackbar(`La liste ${listName} a été créée !`);
         } catch(e) {
+            console.error(e);
             showSnackbar(`Une erreur est survenue.`);
         }
 }

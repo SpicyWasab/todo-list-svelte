@@ -9,6 +9,7 @@
     import { goto } from '$app/navigation';
 
     export let list;
+    export let category;
 
     let menu;
 </script>
@@ -25,12 +26,25 @@
                     <Item on:SMUI:action={() => showDialog('rename-list', { list })}>
                         <Text>Renommer</Text>
                     </Item>
-                    <Item>
+                    
+                    <Item  on:SMUI:action={() => showDialog('move-list', { list })}>
                         <Text>Déplacer</Text>
                     </Item>
-                    <Item on:SMUI:action={() => showDialog('archive-list', { list })}>
-                        <Text>Archiver</Text>
-                    </Item>
+                    
+                    {#if category === 'archive'}
+
+                        <Item on:SMUI:action={() => showDialog('unarchive-list', { list })}>
+                            <Text>Désarchiver</Text>
+                        </Item>
+                        
+                    {:else}
+                        
+                        <Item on:SMUI:action={() => showDialog('archive-list', { list })}>
+                            <Text>Archiver</Text>
+                        </Item>
+                        
+                    {/if}
+
                     <Separator />
                     <Item on:SMUI:action={() => showDialog('delete-list', { list })}>
                         <Text>Supprimer</Text>
@@ -39,9 +53,9 @@
             </Menu>
         </ActionIcons>
     </Actions>
-    <PrimaryAction on:click={() => goto(`/list/${list.name}`)}>
+    <PrimaryAction on:click={() => goto(`/categories/${category}/lists/${list.name}`)}>
         <List checkList ripple>
-            {#each list.todos.slice(0, 3) as { name, done }}
+            {#each list.tasks.slice(0, 3) as { name, done }}
                 <Item disabled ripple={false}>
                         <Checkbox disabled checked={done}/>
                         <span class:done>{name}</span>

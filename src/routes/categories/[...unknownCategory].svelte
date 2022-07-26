@@ -5,13 +5,13 @@
     import { goto } from '$app/navigation';
     import { showSnackbar } from "$lib/SnackBarManager.svelte";
 
-    const listName = $page.params['unknownList'];
+    const { unknownCategory } = $page.params;
 
-    showSnackbar(`La liste ${listName} n'existe pas.`)
+    showSnackbar(`La catégorie ${unknownCategory} n'existe pas.`)
 </script>
 
 <div class="center-items">
     <Button variant="outlined">
-        <Label on:click={() => goto('/actives')}>Voir toutes les listes</Label>
+        <Label on:click={() => goto('/categories/actives')}>Retour à la catégorie Actives</Label>
     </Button>
 </div>

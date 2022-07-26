@@ -3,26 +3,21 @@
     import Button, { Label } from '@smui/button';
     import { Text } from '@smui/list';
 
-    import { db } from '$lib/db';
+    import { db, deleteCategory } from '$lib/db';
     import { showSnackbar } from '$lib/SnackBarManager.svelte';
     
     import { page } from '$app/stores';
-
-    export let list;
-
-    const { category } = $page.params;
+    import { goto } from '$app/navigation';
+    
+    export let category;
 
     async function submit() {
         try {
-            if (await db.table('archive').get(list.name) != undefined) return showSnackbar('Une liste du même nom se trouve déjà dans l\'archive');
+            await deleteCategory(category);
 
-            await db.table('archive').add(list);
+            if($page.params.category === category) goto('/categories/actives');
 
-            await db
-                .table(category)
-                .delete(list.name);
-            
-            showSnackbar(`La liste ${list.name} a été archivée !`);
+            showSnackbar(`La catégorie ${category} a été supprimée !`);
         } catch(e) {
             console.error(e);
             showSnackbar(`Une erreur est survenue.`);
@@ -31,16 +26,16 @@
 </script>
 
 <Dialog open on:SMUIDialog:closed>
-    <DialogTitle>Archiver</DialogTitle>
+    <DialogTitle>Supprimer</DialogTitle>
     <Content>
-        <Text>Archiver la liste {list.name} ?</Text>
+        <Text>Supprimer la catégorie {category} ?</Text>
     </Content>
     <Actions>
         <Button color="secondary" use={[InitialFocus]}>
             <Label>Annuler</Label>
         </Button>
         <Button variant="unelevated" on:click={submit}>
-            <Label>Archiver</Label>
+            <Label>Supprimer</Label>
         </Button>
     </Actions>
 </Dialog>

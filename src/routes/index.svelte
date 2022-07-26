@@ -1,3 +1,10 @@
 <script context="module">
-    
-</script>
+    export async function load() {
+      console.log('test');
+      
+      return {
+        status: 301,
+        redirect: '/categories/actives'
+      };
+    }
+  </script>

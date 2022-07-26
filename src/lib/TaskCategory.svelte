@@ -10,7 +10,7 @@
     let panelOpen = true;
 
     export let name;
-    export let todos;
+    export let tasks;
     export let taskChecked;
     export let clickedDelete;
     export let send;
@@ -27,7 +27,7 @@
     </Header>
     <Content>
         <List checkList>
-            {#each todos as { name, done } (name)}
+            {#each tasks as { name, done } (name)}
                 <div in:receive={{key: name}} out:send={{key: name}} animate:flip>
                     <Item on:SMUI:action={() => taskChecked(name)}>
                         <Graphic>

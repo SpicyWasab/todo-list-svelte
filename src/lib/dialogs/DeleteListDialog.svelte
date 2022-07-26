@@ -3,18 +3,21 @@
     import Button, { Label } from '@smui/button';
     import { Text } from '@smui/list';
 
-    import { deleteList } from '$lib/database.mjs';
+    import { db } from '$lib/db';
     import { showSnackbar } from '$lib/SnackBarManager.svelte';
-    import { todoLists } from '$lib/state.mjs';
+    
+    import { page } from '$app/stores';
 
     export let list;
 
+    const { category } = $page.params;
+
     async function submit() {
         try {
-            // TODO: to update with ... update ? xD
-            let newTodoListsState = await deleteList(list.id);
-            todoLists.set(newTodoListsState);
-
+            await db
+                .table(category)
+                .delete(list.name);
+            
             showSnackbar(`La liste ${list.name} a été supprimée !`);
         } catch(e) {
             console.error(e);

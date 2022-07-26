@@ -4,36 +4,31 @@
     import TextField, { HelperLine } from '@smui/textfield';
 
     import { showSnackbar } from '$lib/SnackBarManager.svelte';
+    import { db, createCategory } from '$lib/db';
+    import { page } from '$app/stores';
 
-    import { db } from '$lib/db';
+    let categoryName = "";
 
-    let taskName = "";
-
-    export let category;
-    export let currentList;
-
-    $: invalid = taskName.length === 0;
+    $: invalid = categoryName.length === 0;
 
     async function submit() {
         try {
-            if($currentList.tasks.some(task => task.name === taskName)) return showSnackbar('Une tâche de cette liste porte déjà ce nom.');
+            if(db.tables.some(table => table.name === categoryName)) return showSnackbar('Une autre catégorie porte déjà ce nom.');
+            await createCategory(categoryName);
 
-            $currentList.tasks.push({ name: taskName, done: false });
-            await db.table(category).put($currentList);
-
-            showSnackbar(`La tâche ${taskName} a été ajoutée !`);
+            showSnackbar(`La catégorie ${categoryName} a été créée !`);
         } catch(e) {
             console.error(e);
             showSnackbar(`Une erreur est survenue.`);
         }
-    }
+}
 </script>
 
 <Dialog open on:SMUIDialog:closed>
-    <DialogTitle>Ajouter une tâche</DialogTitle>
+    <DialogTitle>Créer catégorie {categoryName}</DialogTitle>
     <Content>
-        <TextField bind:value={taskName} label="Nom" {invalid} input$maxlength={50}>
-            <HelperLine slot="helper">{taskName.length}/50</HelperLine>
+        <TextField bind:value={categoryName} label="Nom" {invalid} input$maxlength={20}>
+            <HelperLine slot="helper">{categoryName.length}/20</HelperLine>
         </TextField>
     </Content>
     <Actions>
@@ -41,7 +36,7 @@
             <Label>Annuler</Label>
         </Button>
         <Button disabled={invalid} variant="unelevated" defaultAction use={[InitialFocus]} on:click={submit}>
-            <Label>Ajouter</Label>
+            <Label>Créer</Label>
         </Button>
     </Actions>
 </Dialog>

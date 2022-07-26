@@ -31,11 +31,13 @@
 		"@smui/list": "^6.0.0-beta.16",
 		"@smui/menu": "^6.0.0",
 		"@smui/menu-surface": "^6.0.0",
+		"@smui/radio": "^6.0.0",
 		"@smui/ripple": "^6.0.0",
 		"@smui/snackbar": "^6.0.0-beta.16",
 		"@smui/textfield": "^6.0.0-beta.16",
 		"@smui/top-app-bar": "^6.0.0-beta.16",
 		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-static": "^1.0.0-next.38",
 		"@sveltejs/kit": "next",
 		"eslint": "^8.16.0",
 		"eslint-config-prettier": "^8.3.0",
@@ -48,5 +50,9 @@
 		"typescript": "^4.7.4",
 		"vite": "^3.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@supabase/supabase-js": "^1.35.4",
+		"dexie": "^3.2.2"
+	}
 }

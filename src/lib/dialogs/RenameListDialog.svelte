@@ -3,7 +3,6 @@
     import Button, { Label } from '@smui/button';
     import TextField, { HelperLine } from '@smui/textfield';
 
-    import { saveList } from '$lib/database.mjs';
     import { showSnackbar } from '$lib/SnackBarManager.svelte';
     import { todoLists } from '$lib/state.mjs';
 

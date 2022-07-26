@@ -14,42 +14,65 @@
 
 <script>
     import Drawer, { Content, Scrim, Header, Title, Subtitle } from '@smui/drawer';
-    import List, { Item, Text, Separator, Graphic } from '@smui/list';
+    import List, { Item, Text, Separator, Graphic, Subheader, Meta } from '@smui/list';
+    import IconButton, { Icon } from '@smui/icon-button';
+
+    import CreateCategoryButton from './CreateCategoryButton.svelte';
     
     import { page } from '$app/stores'; 
-    import { databaseStarted } from './state.mjs';
+
+    import { db } from '$lib/db';
+    import { showDialog } from './DialogManager.svelte';
+    import { goto } from '$app/navigation';
 
     let currentActivity = undefined;
     let disabled = false;
 
+    $: category = $page.params.category;
+
     $: {
         closeDrawer(); // if navigating while drawer is opened, then we should probably close it :)
         currentActivity = $page.url.pathname;
-    }
-
-    $: if($databaseStarted) {
-        disabled = false;
-    } else {
-        disabled = true;
     }
 </script>
 
 <Drawer bind:disabled variant="modal" bind:open={$open}>
     <Header>
         <Title>Todo List</Title>
-        <Subtitle>Powered by Svelte.</Subtitle>
+        <Subtitle>Made by Wasab'</Subtitle>
     </Header>
     <Content>
         <List>
-            <Item href="/actives" activated={currentActivity === '/actives'}>
+            <Item href="/categories/actives" activated={category === 'actives'}>
                 <Graphic class="material-icons">checklist</Graphic>
-                <Text>Actifs</Text>
+                <Text>Actives</Text>
             </Item>
-            <Item href="archive" activated={currentActivity === '/archive'}>
+            <Item href="/categories/archive" activated={category === 'archive'}>
                 <Graphic class="material-icons">archive</Graphic>
-                <Text>Archivés</Text>
+                <Text>Archivées</Text>
             </Item>
-            <Separator/>
+        </List>
+        <Separator />
+        <List>
+            <Subheader>Catégories</Subheader>
+            {#each db.tables as table}
+                {#key $open}
+                    {#if !['actives', 'archive'].includes(table.name)}
+                        <Item on:click={() => goto(`/categories/${(encodeURI(table.name))}`)} activated={category === table.name}>
+                            <Graphic class="material-icons">label</Graphic>
+                            <Text>{table.name}</Text>
+                            <Meta>
+                                <IconButton on:click={e => { e.stopPropagation() ; showDialog('delete-category', { category: table.name }) }} ripple={false} class="material-icons">
+                                    delete
+                                </IconButton>
+                            </Meta>
+                        </Item>
+                    {/if}
+                {/key}
+            {/each}
+            <Item ripple={false}>
+                <CreateCategoryButton />
+            </Item>
         </List>
     </Content>
 </Drawer>
