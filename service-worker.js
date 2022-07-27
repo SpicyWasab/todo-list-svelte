@@ -1,5 +1,5 @@
 const n = [
-  "/todo-list-svelte/_app/immutable/start-bf32b71c.js",
+  "/todo-list-svelte/_app/immutable/start-15c4ee4f.js",
   "/todo-list-svelte/_app/immutable/pages/__layout.svelte-b08fd73a.js",
   "/todo-list-svelte/_app/immutable/pages/__error.svelte-9a357fdd.js",
   "/todo-list-svelte/_app/immutable/pages/categories/_...unknownCategory_.svelte-5c88dd3b.js",
@@ -26,21 +26,21 @@ const n = [
   "/todo-list-svelte/manifest.webmanifest",
   "/todo-list-svelte/smui-dark.css",
   "/todo-list-svelte/smui.css"
-], l = "v1", i = n.concat(p), d = new Set(i);
+], o = "v1", i = n.concat(p), d = new Set(i);
 self.addEventListener("install", (t) => {
-  t.waitUntil(caches.open(v1).then((e) => e.addAll(i)).then(() => {
+  t.waitUntil(caches.open(o).then((e) => e.addAll(i)).then(() => {
     worker.skipWaiting();
   }));
 });
 self.addEventListener("activate", (t) => {
   t.waitUntil(caches.keys().then(async (e) => {
     for (const s of e)
-      s !== l && await caches.delete(s);
+      s !== o && await caches.delete(s);
     self.clients.claim();
   }));
 });
 async function r(t) {
-  const e = await caches.open(l);
+  const e = await caches.open(o);
   try {
     const s = await fetch(t);
     return e.put(t, s.clone()), s;
@@ -54,6 +54,6 @@ async function r(t) {
 self.addEventListener("fetch", (t) => {
   if (t.request.method !== "GET" || t.request.headers.has("range"))
     return;
-  const e = new URL(t.request.url), s = e.protocol.startsWith("http"), a = e.hostname === self.location.hostname && e.port !== self.location.port, o = e.host === self.location.host && d.has(e.pathname), c = t.request.cache === "only-if-cached" && !o;
-  s && !a && !c && t.respondWith((async () => o && await caches.match(t.request) || r(t.request))());
+  const e = new URL(t.request.url), s = e.protocol.startsWith("http"), a = e.hostname === self.location.hostname && e.port !== self.location.port, l = e.host === self.location.host && d.has(e.pathname), c = t.request.cache === "only-if-cached" && !l;
+  s && !a && !c && t.respondWith((async () => l && await caches.match(t.request) || r(t.request))());
 });
