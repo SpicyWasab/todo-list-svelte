@@ -54,7 +54,7 @@
 </script>
 
 {#if $currentList != undefined}
-    <div in:fly={{ x: 2000 }} out:fly={{ x: 2000 }} class="activity-wrapper">
+    <div in:fly={{ x: 2000 }} class="activity-wrapper">
         {#each categories as category}
             <Accordion>
                 <TaskCategory {...category} {taskChecked} {clickedDelete} {receive} {send}/>
