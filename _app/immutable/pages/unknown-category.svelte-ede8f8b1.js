@@ -1,0 +1,1 @@
+import{S as o,i as r,s as c,r as i,u as l,b as f,E as s,h as u}from"../chunks/index-f7c1fb44.js";function m(a){let t;return{c(){t=i("teste")},l(e){t=l(e,"teste")},m(e,n){f(e,t,n)},p:s,i:s,o:s,d(e){e&&u(t)}}}function p(a){return console.log("fallback"),[]}class d extends o{constructor(t){super(),r(this,t,p,m,c,{})}}export{d as default};

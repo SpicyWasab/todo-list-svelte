@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="./favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content="">
+	<link rel="modulepreload" href="/_app/immutable/start-754b12c5.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-f7c1fb44.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/singletons-3371444f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/db-b330a19b.js">
+			<script>
+		if ('serviceWorker' in navigator) {
+			addEventListener('load', function () {
+				navigator.serviceWorker.register('/service-worker.js');
+			});
+		}
+	</script>
+
+		<!-- Material Icons -->
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		/>
+		<!-- Roboto -->
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"
+		/>
+		<!-- Roboto Mono -->
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Roboto+Mono"
+		/>
+
+		<!-- SMUI Styles -->
+		<link rel="stylesheet" href="/todo-list-svelte/smui.css" media="(prefers-color-scheme: light)" />
+		<link
+			rel="stylesheet"
+			href="/todo-list-svelte/smui-dark.css"
+			media="screen and (prefers-color-scheme: dark)"
+		/>
+
+		<link rel="stylesheet" href="/todo-list-svelte/app.css">
+
+			<link rel="manifest" href="/todo-list-svelte/manifest.json">
+	</head>
+	<body>
+		<div class="svelte-body">
+		<script type="module" data-sveltekit-hydrate="45h">
+		import { start } from "/_app/immutable/start-754b12c5.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: true,
+			trailing_slash: "never",
+			hydrate: null
+		});
+	</script></div>
+	</body>
+</html>
