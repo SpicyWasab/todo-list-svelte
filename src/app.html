@@ -4,33 +4,35 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<meta name="theme-color" content="#ff3e00">
+		<meta name="theme-color" content="#ff3e00" media="(prefers-color-scheme: dark)">
+
+		<!-- SMUI Styles -->
+		<link rel="stylesheet" href="/todo-list-svelte/smui.css" media="(prefers-color-scheme: light)" />
+		<link rel="stylesheet" href="/todo-list-svelte/smui-dark.css" media="screen and (prefers-color-scheme: dark)" />
+
+		<link rel="stylesheet" href="/todo-list-svelte/app.css">
+
+		<link rel="manifest" href="/todo-list-svelte/manifest.webmanifest">
+
 		%sveltekit.head%
 
 		<!-- Material Icons -->
 		<link
-		rel="stylesheet"
-		href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
 		/>
 		<!-- Roboto -->
 		<link
-		rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"
 		/>
 		<!-- Roboto Mono -->
 		<link
-		rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Roboto+Mono"
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Roboto+Mono"
 		/>
-
-		<!-- SMUI Styles -->
-		<link rel="stylesheet" href="/smui.css" media="(prefers-color-scheme: light)" />
-		<link
-		rel="stylesheet"
-		href="/smui-dark.css"
-		media="screen and (prefers-color-scheme: dark)"
-		/>
-
-		<link rel="stylesheet" href="/app.css">
 	</head>
 	<body>
 		<div class="svelte-body">%sveltekit.body%</div>

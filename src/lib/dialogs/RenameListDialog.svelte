@@ -4,23 +4,27 @@
     import TextField, { HelperLine } from '@smui/textfield';
 
     import { showSnackbar } from '$lib/SnackBarManager.svelte';
-    import { todoLists } from '$lib/state.mjs';
+    import { page } from '$app/stores';
+    import { db } from '$lib/db';
 
-    export let list = { };
+    export let list;
+
+    const {category} = $page.params;
+
     let listNewName = "";
+
+    const maxLength = 20;
+
+    $: listNewName = listNewName.slice(0, maxLength);
 
     $: invalid = listNewName.length === 0;
 
     async function submit() {
         try {
             if(listNewName === list.name) return showSnackbar('Une liste ne peut pas être renommée avec le même nom.');
-            if($todoLists[listNewName] != undefined) return showSnackbar('Une autre liste porte déjà ce nom.');
-
-            list.name = listNewName;
+            if(await db.table(category).get(listNewName) != undefined) return showSnackbar('Une autre liste porte déjà ce nom.');
             
-            await saveList(list);
-
-            todoLists.set($todoLists);
+            db.table(category).update(list.name, { name: listNewName });
 
             showSnackbar(`La liste a été renommée !`);
         } catch(e) {
@@ -32,8 +36,8 @@
 <Dialog open on:SMUIDialog:closed>
     <DialogTitle>Renommer liste {list.name}</DialogTitle>
     <Content>
-        <TextField bind:value={listNewName} label="Nom" {invalid} input$maxlength={20}>
-            <HelperLine slot="helper">{listNewName.length}/20</HelperLine>
+        <TextField bind:value={listNewName} label="Nom" {invalid} input$maxlength={maxLength}>
+            <HelperLine slot="helper">{listNewName.length}/{maxLength}</HelperLine>
         </TextField>
     </Content>
     <Actions>
@@ -41,7 +45,7 @@
             <Label>Annuler</Label>
         </Button>
         <Button disabled={invalid} variant="unelevated" defaultAction use={[InitialFocus]} on:click={submit}>
-            <Label>Renomer</Label>
+            <Label>Renommer</Label>
         </Button>
     </Actions>
 </Dialog>

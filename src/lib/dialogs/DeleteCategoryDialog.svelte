@@ -1,4 +1,6 @@
 <script>
+    import { base } from '$app/paths';
+
     import Dialog, { Title as DialogTitle, Content, Actions, InitialFocus } from '@smui/dialog';
     import Button, { Label } from '@smui/button';
     import { Text } from '@smui/list';
@@ -15,7 +17,7 @@
         try {
             await deleteCategory(category);
 
-            if($page.params.category === category) goto('/categories/actives');
+            if($page.params.category === category) goto(`${base}/categories/actives`);
 
             showSnackbar(`La catégorie ${category} a été supprimée !`);
         } catch(e) {

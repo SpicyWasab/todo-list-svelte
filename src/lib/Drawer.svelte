@@ -1,4 +1,6 @@
 <script context="module">
+    import { base } from '$app/paths';
+
     import { writable } from 'svelte/store';
     
     const open = writable(false);
@@ -17,22 +19,21 @@
     import List, { Item, Text, Separator, Graphic, Subheader, Meta } from '@smui/list';
     import IconButton, { Icon } from '@smui/icon-button';
 
-    import CreateCategoryButton from './CreateCategoryButton.svelte';
+    import CreateCategoryButton from '$lib/CreateCategoryButton.svelte';
     
-    import { page } from '$app/stores'; 
+    import { navigating, page } from '$app/stores'; 
 
     import { db } from '$lib/db';
-    import { showDialog } from './DialogManager.svelte';
+    import { showDialog } from '$lib/DialogManager.svelte';
     import { goto } from '$app/navigation';
-
-    let currentActivity = undefined;
+    
     let disabled = false;
 
     $: category = $page.params.category;
 
-    $: {
-        closeDrawer(); // if navigating while drawer is opened, then we should probably close it :)
-        currentActivity = $page.url.pathname;
+    $: if($navigating) {
+        // if navigating while drawer is opened, then we should probably close it :)
+        closeDrawer();
     }
 </script>
 
@@ -43,11 +44,11 @@
     </Header>
     <Content>
         <List>
-            <Item href="/categories/actives" activated={category === 'actives'}>
+            <Item href="{base}/categories/actives" activated={category === 'actives'}>
                 <Graphic class="material-icons">checklist</Graphic>
                 <Text>Actives</Text>
             </Item>
-            <Item href="/categories/archive" activated={category === 'archive'}>
+            <Item href="{base}/categories/archive" activated={category === 'archive'}>
                 <Graphic class="material-icons">archive</Graphic>
                 <Text>Archivées</Text>
             </Item>
@@ -58,7 +59,7 @@
             {#each db.tables as table}
                 {#key $open}
                     {#if !['actives', 'archive'].includes(table.name)}
-                        <Item on:click={() => goto(`/categories/${(encodeURI(table.name))}`)} activated={category === table.name}>
+                        <Item on:click={() => goto(`${base}/categories/${(encodeURI(table.name))}`)} activated={category === table.name}>
                             <Graphic class="material-icons">label</Graphic>
                             <Text>{table.name}</Text>
                             <Meta>

@@ -1,5 +1,5 @@
 <script>
-  console.log('testeee');
+    import { base } from '$app/paths';
 
     import { db } from '$lib/db';
     import TopAppBar from '$lib/TopAppBar.svelte';
@@ -15,16 +15,11 @@
     
     import { browser } from '$app/env';
 
-    console.log('layout');
-
     let initPromise = startDatabase();
 
     async function startDatabase() {
-      console.log('layout:startDB');
       if(!browser) return;
       if(db.isOpen()) return;
-
-      console.log('dbWasntStarted');
 
       try {
         await db.open();
@@ -33,11 +28,6 @@
       }
     }
 </script>
-
-<svelte:head>
-  <meta name="theme-color" content="#ff3e00">
-  <meta name="theme-color" content="#ff3e00" media="(prefers-color-scheme: dark)">
-</svelte:head>
 
 <Drawer />
 <TopAppBar />

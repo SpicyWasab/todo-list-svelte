@@ -5,6 +5,9 @@ const config = {
 	plugins: [sveltekit()],
 	ssr: {
 		noExternal: [/^@smui(?:-extra)?\//],
+	},
+	build: {
+		target: ["es2022"]
 	}
 };
 

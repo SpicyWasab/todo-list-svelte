@@ -5,9 +5,12 @@
 
     import { showSnackbar } from '$lib/SnackBarManager.svelte';
     import { db, createCategory } from '$lib/db';
-    import { page } from '$app/stores';
 
     let categoryName = "";
+
+    const maxLength = 20;
+
+    $: categoryName = categoryName.slice(0, maxLength);
 
     $: invalid = categoryName.length === 0;
 
@@ -27,8 +30,8 @@
 <Dialog open on:SMUIDialog:closed>
     <DialogTitle>Créer catégorie {categoryName}</DialogTitle>
     <Content>
-        <TextField bind:value={categoryName} label="Nom" {invalid} input$maxlength={20}>
-            <HelperLine slot="helper">{categoryName.length}/20</HelperLine>
+        <TextField bind:value={categoryName} label="Nom" {invalid} input$maxlength={maxLength}>
+            <HelperLine slot="helper">{categoryName.length}/{maxLength}</HelperLine>
         </TextField>
     </Content>
     <Actions>

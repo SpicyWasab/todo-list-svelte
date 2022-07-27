@@ -1,5 +1,3 @@
-console.log('r')
-
 import { browser } from '$app/env';
 // db.js
 import Dexie from 'dexie';
@@ -15,13 +13,7 @@ if(browser) {
         });
     }
 
-    console.log('aaa');
-
     await db.open();
-
-    console.log(db.verno);
-
-    console.log('ooo')
 }
 export async function createCategory(categoryName) {
     await changeSchema(categoryName, 'name, tasks');

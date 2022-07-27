@@ -1,4 +1,6 @@
 <script>
+    import { base } from '$app/paths';
+    
     import Card, { PrimaryAction, Content, Actions, ActionIcons } from '@smui/card';
     import IconButton from '@smui/icon-button';
     import Menu from '@smui/menu';
@@ -53,7 +55,7 @@
             </Menu>
         </ActionIcons>
     </Actions>
-    <PrimaryAction on:click={() => goto(`/categories/${category}/lists/${list.name}`)}>
+    <PrimaryAction on:click={() => goto(`${base}/categories/${category}/lists/${list.name}`)}>
         <List checkList ripple>
             {#each list.tasks.slice(0, 3) as { name, done }}
                 <Item disabled ripple={false}>

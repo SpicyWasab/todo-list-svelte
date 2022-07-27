@@ -1,4 +1,6 @@
 <script>
+    import { base } from '$app/paths';
+    
     import Button, { Label } from '@smui/button';
 
     import { page } from "$app/stores";
@@ -12,6 +14,6 @@
 
 <div class="center-items">
     <Button variant="outlined">
-        <Label on:click={() => goto('/categories/actives')}>Retour à la catégorie Actives</Label>
+        <Label on:click={() => goto(`${base}/categories/actives`)}>Retour à la catégorie Actives</Label>
     </Button>
 </div>

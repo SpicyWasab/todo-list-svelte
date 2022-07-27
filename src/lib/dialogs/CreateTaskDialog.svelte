@@ -7,10 +7,14 @@
 
     import { db } from '$lib/db';
 
-    let taskName = "";
-
     export let category;
     export let currentList;
+
+    let taskName = "";
+    
+    const maxLength = 50;
+
+    $: taskName = taskName.slice(0, maxLength);
 
     $: invalid = taskName.length === 0;
 
@@ -32,8 +36,8 @@
 <Dialog open on:SMUIDialog:closed>
     <DialogTitle>Ajouter une tâche</DialogTitle>
     <Content>
-        <TextField bind:value={taskName} label="Nom" {invalid} input$maxlength={50}>
-            <HelperLine slot="helper">{taskName.length}/50</HelperLine>
+        <TextField bind:value={taskName} label="Nom" {invalid} input$maxlength={{maxLength}}>
+            <HelperLine slot="helper">{taskName.length}/{maxLength}</HelperLine>
         </TextField>
     </Content>
     <Actions>

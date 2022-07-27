@@ -4,7 +4,7 @@
     import Checkbox from '@smui/checkbox';
     import IconButton, { Icon } from '@smui/icon-button';
     
-    import { fade, crossfade } from 'svelte/transition';
+    import { fade } from 'svelte/transition';
     import { flip } from 'svelte/animate';
 
     let panelOpen = true;

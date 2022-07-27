@@ -11,11 +11,15 @@
 
     let listName = "";
 
+    const maxLength = 20;
+
+    $: listName = listName.slice(0, maxLength);
+
     $: invalid = listName.length === 0;
 
     async function submit() {
         try {
-            // if($todoLists[listName] != undefined) return showSnackbar('Une autre liste porte déjà ce nom.');
+            if(await db.table(category).get(listName) != undefined) return showSnackbar('Une autre liste porte déjà ce nom.');
 
             await db.table(category).add({ name: listName, tasks: [ ] })
 

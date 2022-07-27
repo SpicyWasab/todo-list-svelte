@@ -1,7 +1,3 @@
-<script context="module">
-    
-</script>
-
 <script>
     import Accordion from '@smui-extra/accordion';
     import TaskCategory from '$lib/TaskCategory.svelte'
