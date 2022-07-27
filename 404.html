@@ -2,17 +2,18 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="./favicon.png" />
+		<link rel="icon" href="/todo-list-svelte/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="content-security-policy" content="">
-	<link rel="modulepreload" href="/_app/immutable/start-754b12c5.js">
-	<link rel="modulepreload" href="/_app/immutable/chunks/index-f7c1fb44.js">
-	<link rel="modulepreload" href="/_app/immutable/chunks/singletons-3371444f.js">
-	<link rel="modulepreload" href="/_app/immutable/chunks/db-b330a19b.js">
+	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/start-44b5132f.js">
+	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/chunks/index-f7c1fb44.js">
+	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/chunks/singletons-3371444f.js">
+	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/chunks/paths-b9644fda.js">
+	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/chunks/db-07f01c9f.js">
 			<script>
 		if ('serviceWorker' in navigator) {
 			addEventListener('load', function () {
-				navigator.serviceWorker.register('/service-worker.js');
+				navigator.serviceWorker.register('/todo-list-svelte/service-worker.js');
 			});
 		}
 	</script>
@@ -48,10 +49,10 @@
 	<body>
 		<div class="svelte-body">
 		<script type="module" data-sveltekit-hydrate="45h">
-		import { start } from "/_app/immutable/start-754b12c5.js";
+		import { start } from "/todo-list-svelte/_app/immutable/start-44b5132f.js";
 		start({
 			target: document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode,
-			paths: {"base":"","assets":""},
+			paths: {"base":"/todo-list-svelte","assets":"/todo-list-svelte"},
 			session: {},
 			route: true,
 			spa: true,
