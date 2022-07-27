@@ -1,5 +1,5 @@
 const n = [
-  "/todo-list-svelte/_app/immutable/start-15c4ee4f.js",
+  "/todo-list-svelte/_app/immutable/start-204f6a8f.js",
   "/todo-list-svelte/_app/immutable/pages/__layout.svelte-b08fd73a.js",
   "/todo-list-svelte/_app/immutable/pages/__error.svelte-9a357fdd.js",
   "/todo-list-svelte/_app/immutable/pages/categories/_...unknownCategory_.svelte-5c88dd3b.js",
@@ -29,7 +29,7 @@ const n = [
 ], o = "v1", i = n.concat(p), d = new Set(i);
 self.addEventListener("install", (t) => {
   t.waitUntil(caches.open(o).then((e) => e.addAll(i)).then(() => {
-    worker.skipWaiting();
+    self.skipWaiting();
   }));
 });
 self.addEventListener("activate", (t) => {
