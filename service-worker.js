@@ -1,5 +1,5 @@
 const n = [
-  "/todo-list-svelte/_app/immutable/start-9ff2cb02.js",
+  "/todo-list-svelte/_app/immutable/start-2a7e5282.js",
   "/todo-list-svelte/_app/immutable/pages/__layout.svelte-ebc0eeb4.js",
   "/todo-list-svelte/_app/immutable/pages/__error.svelte-3a563875.js",
   "/todo-list-svelte/_app/immutable/pages/categories/_...unknownCategory_.svelte-d95a71f6.js",
