@@ -1,5 +1,5 @@
-const l = [
-  "/todo-list-svelte/_app/immutable/start-eeacb22f.js",
+const t = [
+  "/todo-list-svelte/_app/immutable/start-f6a870e0.js",
   "/todo-list-svelte/_app/immutable/pages/__layout.svelte-b08fd73a.js",
   "/todo-list-svelte/_app/immutable/pages/__error.svelte-9a357fdd.js",
   "/todo-list-svelte/_app/immutable/pages/categories/_...unknownCategory_.svelte-5c88dd3b.js",
@@ -15,8 +15,8 @@ const l = [
   "/todo-list-svelte/_app/immutable/chunks/Drawer-31d0a32b.js",
   "/todo-list-svelte/_app/immutable/chunks/navigation-da1e81ae.js",
   "/todo-list-svelte/_app/immutable/chunks/Fab-01ceb877.js"
-];
-caches.open("v1").then((e) => e.addAll(l));
-self.addEventListener("fetch", (e) => {
-  e.respondWith(caches.match(e.request).then((s) => (console.log("[Service Worker] R\xE9cup\xE9ration de la ressource: " + e.request.url), s || fetch(e.request).then((t) => caches.open(cacheName).then((a) => (console.log("[Service Worker] Mise en cache de la nouvelle ressource: " + e.request.url), a.put(e.request, t.clone()), t))))));
+], s = "v1";
+caches.open(s).then((e) => e.addAll(t));
+self.addEventListener("fetch", async (e) => {
+  e.respondWith(await caches.match(e.request) ?? await fetch(e.request));
 });
