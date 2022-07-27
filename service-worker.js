@@ -1,9 +1,5 @@
-const l = {
-  toString: () => {
-    throw new Error("`timestamp` has been removed from $service-worker. Use `version` instead");
-  }
-}, r = [
-  "/todo-list-svelte/_app/immutable/start-966dac59.js",
+const n = [
+  "/todo-list-svelte/_app/immutable/start-bf32b71c.js",
   "/todo-list-svelte/_app/immutable/pages/__layout.svelte-b08fd73a.js",
   "/todo-list-svelte/_app/immutable/pages/__error.svelte-9a357fdd.js",
   "/todo-list-svelte/_app/immutable/pages/categories/_...unknownCategory_.svelte-5c88dd3b.js",
@@ -30,21 +26,21 @@ const l = {
   "/todo-list-svelte/manifest.webmanifest",
   "/todo-list-svelte/smui-dark.css",
   "/todo-list-svelte/smui.css"
-], i = `cache${l}`, c = r.concat(p), d = new Set(c);
+], l = "v1", i = n.concat(p), d = new Set(i);
 self.addEventListener("install", (t) => {
-  t.waitUntil(caches.open(i).then((e) => e.addAll(c)).then(() => {
+  t.waitUntil(caches.open(v1).then((e) => e.addAll(i)).then(() => {
     worker.skipWaiting();
   }));
 });
 self.addEventListener("activate", (t) => {
   t.waitUntil(caches.keys().then(async (e) => {
     for (const s of e)
-      s !== i && await caches.delete(s);
+      s !== l && await caches.delete(s);
     self.clients.claim();
   }));
 });
-async function m(t) {
-  const e = await caches.open(`offline${l}`);
+async function r(t) {
+  const e = await caches.open(l);
   try {
     const s = await fetch(t);
     return e.put(t, s.clone()), s;
@@ -58,6 +54,6 @@ async function m(t) {
 self.addEventListener("fetch", (t) => {
   if (t.request.method !== "GET" || t.request.headers.has("range"))
     return;
-  const e = new URL(t.request.url), s = e.protocol.startsWith("http"), a = e.hostname === self.location.hostname && e.port !== self.location.port, o = e.host === self.location.host && d.has(e.pathname), n = t.request.cache === "only-if-cached" && !o;
-  s && !a && !n && t.respondWith((async () => o && await caches.match(t.request) || m(t.request))());
+  const e = new URL(t.request.url), s = e.protocol.startsWith("http"), a = e.hostname === self.location.hostname && e.port !== self.location.port, o = e.host === self.location.host && d.has(e.pathname), c = t.request.cache === "only-if-cached" && !o;
+  s && !a && !c && t.respondWith((async () => o && await caches.match(t.request) || r(t.request))());
 });
