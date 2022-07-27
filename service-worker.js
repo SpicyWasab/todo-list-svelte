@@ -1,5 +1,5 @@
 const t = [
-  "/todo-list-svelte/_app/immutable/start-2ee591a5.js",
+  "/todo-list-svelte/_app/immutable/start-c3eb22d0.js",
   "/todo-list-svelte/_app/immutable/pages/__layout.svelte-b08fd73a.js",
   "/todo-list-svelte/_app/immutable/pages/__error.svelte-9a357fdd.js",
   "/todo-list-svelte/_app/immutable/pages/categories/_...unknownCategory_.svelte-5c88dd3b.js",
@@ -17,3 +17,4 @@ const t = [
   "/todo-list-svelte/_app/immutable/chunks/Fab-01ceb877.js"
 ];
 caches.open("v1").then((e) => e.addAll(t));
+self.addEventListener("fetch", async (e) => await caches.match(e.request) ?? await fetch(e.request));
