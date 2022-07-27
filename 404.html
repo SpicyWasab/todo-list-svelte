@@ -4,10 +4,22 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="/todo-list-svelte/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<meta name="theme-color" content="#ff3e00">
+		<meta name="theme-color" content="#ff3e00" media="(prefers-color-scheme: dark)">
+
+		<!-- SMUI Styles -->
+		<link rel="stylesheet" href="/smui.css" media="(prefers-color-scheme: light)" />
+		<link rel="stylesheet" href="/smui-dark.css" media="screen and (prefers-color-scheme: dark)" />
+
+		<link rel="stylesheet" href="/app.css">
+
+		<link rel="manifest" href="/manifest.webmanifest">
+
 		<meta http-equiv="content-security-policy" content="">
-	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/start-aeb6f9d4.js">
-	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/chunks/index-f7c1fb44.js">
-	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/chunks/singletons-3371444f.js">
+	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/start-cd831fa4.js">
+	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/chunks/index-c2d942cd.js">
+	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/chunks/singletons-d06f5170.js">
 	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/chunks/paths-b9644fda.js">
 	<link rel="modulepreload" href="/todo-list-svelte/_app/immutable/chunks/db-07f01c9f.js">
 			<script>
@@ -37,7 +49,7 @@
 	<body>
 		<div class="svelte-body">
 		<script type="module" data-sveltekit-hydrate="45h">
-		import { start } from "/todo-list-svelte/_app/immutable/start-aeb6f9d4.js";
+		import { start } from "/todo-list-svelte/_app/immutable/start-cd831fa4.js";
 		start({
 			target: document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode,
 			paths: {"base":"/todo-list-svelte","assets":"/todo-list-svelte"},
