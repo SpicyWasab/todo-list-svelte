@@ -1,18 +1,18 @@
 const n = [
-  "/todo-list-svelte/_app/immutable/start-70b0b57f.js",
-  "/todo-list-svelte/_app/immutable/pages/__layout.svelte-3529e54f.js",
+  "/todo-list-svelte/_app/immutable/start-aeb6f9d4.js",
+  "/todo-list-svelte/_app/immutable/pages/__layout.svelte-fbac7c0a.js",
   "/todo-list-svelte/_app/immutable/pages/__error.svelte-9a357fdd.js",
   "/todo-list-svelte/_app/immutable/pages/categories/_...unknownCategory_.svelte-8c2a6507.js",
   "/todo-list-svelte/_app/immutable/pages/categories/_category_category_/lists/_...unknownList_.svelte-d80383d7.js",
-  "/todo-list-svelte/_app/immutable/pages/categories/_category_category_/lists/_list_.svelte-1bb97f9f.js",
-  "/todo-list-svelte/_app/immutable/pages/categories/_category_category_.svelte-0e7dfe52.js",
+  "/todo-list-svelte/_app/immutable/pages/categories/_category_category_/lists/_list_.svelte-fa707bce.js",
+  "/todo-list-svelte/_app/immutable/pages/categories/_category_category_.svelte-003c36e5.js",
   "/todo-list-svelte/_app/immutable/assets/[category=category]-750f9fef.css",
   "/todo-list-svelte/_app/immutable/pages/index.svelte-bc024c2f.js",
   "/todo-list-svelte/_app/immutable/chunks/index-f7c1fb44.js",
   "/todo-list-svelte/_app/immutable/chunks/singletons-3371444f.js",
   "/todo-list-svelte/_app/immutable/chunks/paths-b9644fda.js",
   "/todo-list-svelte/_app/immutable/chunks/db-07f01c9f.js",
-  "/todo-list-svelte/_app/immutable/chunks/Drawer-f86ad283.js",
+  "/todo-list-svelte/_app/immutable/chunks/Drawer-86fd95c4.js",
   "/todo-list-svelte/_app/immutable/chunks/navigation-9cec10ef.js",
   "/todo-list-svelte/_app/immutable/chunks/Fab-e7b76e6b.js"
 ], p = [
@@ -26,9 +26,9 @@ const n = [
   "/todo-list-svelte/manifest.webmanifest",
   "/todo-list-svelte/smui-dark.css",
   "/todo-list-svelte/smui.css"
-], o = "v1", i = n.concat(p), d = new Set(i);
+], o = "v1", c = n.concat(p), d = new Set(c);
 self.addEventListener("install", (t) => {
-  t.waitUntil(caches.open(o).then((e) => e.addAll(i)).then(() => {
+  t.waitUntil(caches.open(o).then((e) => e.addAll(c)).then(() => {
     self.skipWaiting();
   }));
 });
@@ -54,6 +54,6 @@ async function r(t) {
 self.addEventListener("fetch", (t) => {
   if (t.request.method !== "GET" || t.request.headers.has("range"))
     return;
-  const e = new URL(t.request.url), s = e.protocol.startsWith("http"), a = e.hostname === self.location.hostname && e.port !== self.location.port, l = e.host === self.location.host && d.has(e.pathname), c = t.request.cache === "only-if-cached" && !l;
-  s && !a && !c && t.respondWith((async () => l && await caches.match(t.request) || r(t.request))());
+  const e = new URL(t.request.url), s = e.protocol.startsWith("http"), a = e.hostname === self.location.hostname && e.port !== self.location.port, l = e.host === self.location.host && d.has(e.pathname), i = t.request.cache === "only-if-cached" && !l;
+  s && !a && !i && t.respondWith((async () => l && await caches.match(t.request) || r(t.request))());
 });
