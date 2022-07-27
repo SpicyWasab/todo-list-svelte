@@ -26,7 +26,7 @@
         "type": "image/png"
         }
     ],
-    "background_color": "black",
+    "background_color": "#ff3e00",
     "theme_color": "#ff3e00",
     "start_url": "/todo-list-svelte/categories/actives",
     "display": "standalone",
