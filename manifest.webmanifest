@@ -3,7 +3,7 @@
     "short_name": "Todo List",
     "description": "Une simple application web progressive pour gérer ses todolists.",
     "lang": "fr-FR",
-    "scope": "/todo-list-svelte",
+    "scope": "/",
     "icons": [
         {
         "src": "logos/img2x.png",
