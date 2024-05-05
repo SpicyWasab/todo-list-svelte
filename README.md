@@ -8,6 +8,6 @@ I wanted to learn PWA for mobile development, as well as Svelte-Kit (which is a 
 Right there !
 > https://www.wasab.dev/todo-list-svelte/
 
-As mentioned earlier, this is a PWA, so it's better to use a smartphone.
+As mentioned earlier, this is a PWA designed for smartphone, although it works fine on desktop, it's better to use a smartphone (the UI is really made for small screens).
 It's installable and can work offline thanks to a Service Worker (not sure about IOS compatibility though, but it should work on recent versions of IOS).
 The website is also entirely hosted on github pages, and your notes are stored in local storage / IDB. They're not sent to the server in any means !
