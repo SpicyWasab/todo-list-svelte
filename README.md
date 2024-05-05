@@ -1,38 +1,12 @@
-# create-svelte
+# Todo-List PWA in SvelteKit 
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## What is this ?
+This is a simple todo-list Progressive Web Application I made during a week on summer vacations.
+I wanted to learn PWA for mobile development, as well as Svelte-Kit (which is a cool web framework !)
 
-## Creating a project
+## Where can I try this ?
+Right there !
+> https://www.wasab.dev/todo-list-svelte/
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte
-
-# create a new project in my-app
-npm init svelte my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+As mentioned earlier, this is a PWA, so it's better to use a smartphone.
+It's installable and can work offline thanks to a Service Worker (not sure about IOS compatibility though, but it should work on recent versions of IOS).
